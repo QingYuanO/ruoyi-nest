@@ -16,7 +16,6 @@ import { SysRoleRepository } from '~/ruoyi-system/sys-role/repositories/sys-role
 import { SysConfigService } from '~/ruoyi-system/sys-config/sys-config.service';
 import { EntityValidatorUtils } from '~/ruoyi-share/utils/entity-validator.utils';
 import { SysDeptService } from '~/ruoyi-system/sys-dept/sys-dept.service';
-import { SysUserTenantRepository } from '~/ruoyi-system/sys-user-tenant/repositories/sys-user-tenant.repository';
 import { Transactional } from '~/ruoyi-share/annotation/Transactional';
 @Injectable()
 export class SysUserService {
@@ -27,7 +26,6 @@ export class SysUserService {
         private readonly userRoleRepository: SysUserRoleRepository,
         private readonly userPostRepository: SysUserPostRepository,
         private readonly postRepository: SysPostRepository, 
-        private readonly userTenantRepository: SysUserTenantRepository,
         private readonly securityUtils: SecurityUtils,
         private readonly roleRepository: SysRoleRepository,
         private readonly configService: SysConfigService,      
@@ -206,12 +204,6 @@ export class SysUserService {
         await this.insertUserRoles(userId, roleIds);
     }
 
-    // 用户加入到租户
-    async insertUserTenant(userId: number, tenantIds: number[]): Promise<void> {
-        await this.userTenantRepository.deleteUserTenantByUserId(userId);
-        await this.insertUserTenants(userId, tenantIds);
-    }
-
     /**
      * 修改用户状态
      * 
@@ -373,17 +365,6 @@ export class SysUserService {
         }
     }
 
-    // 新增用户租户信息
-    private async insertUserTenants(userId: number, tenantIds: number[]): Promise<void> {
-        if (tenantIds && tenantIds.length > 0) {
-            // 新增用户与租户管理   
-            const userTenants = tenantIds.map(tenantId => ({
-                userId,
-                tenantId
-            }));
-            await this.userTenantRepository.batchUserTenant(userTenants);
-        }
-    }
 
     /**
      * 新增用户角色信息

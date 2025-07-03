@@ -11,7 +11,6 @@ import { SysRoleModule } from '~/ruoyi-system/sys-role/sys-role.module';
 import { SysPostModule } from '~/ruoyi-system/sys-post/sys-post.module';
 import { SysConfigModule } from '~/ruoyi-system/sys-config/sys-config.module';
 import { SysDeptModule } from '~/ruoyi-system/sys-dept/sys-dept.module';
-import { SysUserTenantModule } from '~/ruoyi-system/sys-user-tenant/sys-user-tenant.module';
 
 const providers = [SysUserService, SysUserRepository];
 @Module({
@@ -23,7 +22,6 @@ const providers = [SysUserService, SysUserRepository];
     SysPostModule,
     SysConfigModule,
     SysDeptModule,
-    SysUserTenantModule
   ],
   controllers: [],
   providers,

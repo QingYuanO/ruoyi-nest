@@ -10,9 +10,6 @@ import { SysDictTypeModule } from './sys-dict-type/sys-dict-type.module';
 import { SysRoleDeptModule } from './sys-role-dept/sys-role-dept.module';
 import { SysConfigModule } from './sys-config/sys-config.module';
 import { SysNoticeModule } from './sys-notice/sys-notice.module';
-import { SysTenantModule } from './sys-tenant/sys-tenant.module';
-import { SysUserTenantModule } from './sys-user-tenant/sys-user-tenant.module';
-import { SysUserTenantApplyModule } from './sys-user-tenant-apply/sys-user-tenant-apply.module';
 @Module({
   imports: [
     SysUserModule,
@@ -26,9 +23,6 @@ import { SysUserTenantApplyModule } from './sys-user-tenant-apply/sys-user-tenan
     SysRoleDeptModule,
     SysConfigModule,
     SysNoticeModule,
-    SysTenantModule,
-    SysUserTenantModule,
-    SysUserTenantApplyModule
   ]
 })
 export class RuoYiSystemModule {}
