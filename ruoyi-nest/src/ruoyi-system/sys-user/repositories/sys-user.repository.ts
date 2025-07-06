@@ -216,7 +216,7 @@ export class SysUserRepository {
             .leftJoin('sys_user_role', 'ur', 'u.user_id = ur.user_id')
             .leftJoinAndMapMany('u.roles', 'sys_role', 'r', 'r.role_id = ur.role_id')
             .where('u.delFlag = :delFlag', { delFlag: '0' })
-            .andWhere('r.roleId != :roleId OR r.roleId IS NULL', { roleId: query.roleId })
+            .andWhere('(r.roleId != :roleId OR r.roleId IS NULL)', { roleId: query.roleId })
             .andWhere('u.userId NOT IN (SELECT u.userId FROM sys_user u INNER JOIN sys_user_role ur ON u.userId = ur.userId AND ur.roleId = :roleId)', { roleId: query.roleId });
 
         if (query.userName != null && query.userName != '') {
